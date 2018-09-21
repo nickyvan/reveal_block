@@ -1,0 +1,118 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+}
+/* style for animation one */
+.block-revealer__element {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.content{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.content{
+  background-color: #d1d1d1;
+}
+.flexy {
+	display: flex;
+	/* flex-wrap: wrap; */
+	align-items: center;
+} 
+
+.content__heading {
+	/* flex: none; */
+	width: 100%;
+	padding: 0 5vw;
+}
+
+.content__heading--center {
+	text-align: center;
+}
+
+.content__title {
+	font-size: 8vw;
+	line-height: 1.2;
+	padding: 0 5vw;
+}
+
+.content__title--half {
+	width: 50vw;
+}
+
+.content__title--enclosed {
+	padding: 0;
+	margin: 0;
+}
+
+.content__title--center {
+	margin: auto;
+}
+
+.content__title--right {
+	text-align: right;
+	padding: 0 0 0 2em;
+}
+
+.content__title--left {
+	margin-left: -18vw;
+}
+
+.content__title--medium  {
+	font-size: 6vw;
+}
+
+.content__title--small  {
+	font-size: 2vw;
+}
+
+.content__title__inner {
+	flex: none;
+	display: inline-block;
+	white-space: nowrap;
+	position: relative;
+}
+
+.content__title__inner--offset-1 {
+	top: -0.25em;
+	left: 13.6vw;
+}
+
+.content__title__inner--offset-2 {
+	top: -0.25em;
+	left: 1.75vw;
+}
+
+.content__title__inner--offset-3 {
+	left: -10vw;
+	top: -0.25em;
+}
+
+.content__image-wrap {
+	flex: none;
+	width: 25vw;
+}
+
+.content__image-wrap--half {
+	width: 50vw;
+}
+
+.content__image {
+	width: 100%;
+	display: block;
+}
