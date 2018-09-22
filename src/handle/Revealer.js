@@ -1,14 +1,15 @@
 import TweenMax from 'gsap/TweenMax';
-class Revealer extends Component {
+class Revealer {
 	constructor(el, options) {
 		this.el = el;
 		this.revealSettings = {
 			direction: 'lr',
-			bgcolor: '#f0f0f0',
-			duration: 500,
+			bgcolor: '#000',
+			duration: 1,
 			delay: 0,
 			easing: 'Power4.easeOut'
 		};
+		Object.assign(this.revealSettings,options);
 		this.isAnimating = false;
 		this.layout();
 	}
@@ -22,6 +23,8 @@ class Revealer extends Component {
 		// create revealer element
 		this.revealer = document.createElement('div');
 		this.revealer.classList.add('block-revealer__element');
+		// unless do it , you can see blank portion in the first time;
+		this.revealer.style.backgroundColor = 'transparent';
 		// delete el contents
 		this.el.innerHTML = '';
 		// ad block-revealer
@@ -59,11 +62,12 @@ class Revealer extends Component {
 		}
 		let duration = this.revealSettings.duration;
 		let from = {};
-		let from2 = {};
-		let to2 = {
+		let from_2 = {};
+		let to_2 = {
 			ease: this.revealSettings.easing,
 			onComplete: () => {
 				this.isAnimating = false;
+				Promise.resolve();
 			}
 		};
 		let to = {
@@ -72,7 +76,7 @@ class Revealer extends Component {
 			onComplete: () => {
 				this.revealer.style.transformOrigin = this.revealSettings.origin_2;
 				this.content.style.opacity = 1;
-				TweenMax.fromTo(this.revealer, duration, from2, to2);
+				TweenMax.fromTo(this.revealer, duration, from_2, to_2);
 			}
 		};
 
@@ -96,16 +100,21 @@ class Revealer extends Component {
 			to: to
 		};
 	};
-	animation = () => {
+	reset = () => {
+    this.content.style.opacity = 0;
+	}
+	animated = () => {
 		if (this.isAnimating) return;
 		this.isAnimating = true;
-
-		TweenMax.fromTo(
-			this.revealer,
-			this.transformSetting().duration,
-			this.transformSetting().from,
-			this.transformSetting().to
-		);
+		return new Promise((resolve,err)=>{
+			TweenMax.fromTo(
+				this.revealer,
+				this.transformSetting().duration,
+				this.transformSetting().from,
+				this.transformSetting().to
+			);
+		})
+	
 	};
 }
 
